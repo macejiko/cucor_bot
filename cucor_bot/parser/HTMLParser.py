@@ -6,6 +6,11 @@ import requests
 
 
 class HTMLParser(Parser):
+    """
+    Base class for getting data from url via selectorlib
+    Gets html data via requests and parses result data via provided yml string
+    """
+
     def __init__(self):
         self.data = {}
         self.rates = []

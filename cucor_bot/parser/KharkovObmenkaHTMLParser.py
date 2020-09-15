@@ -4,6 +4,11 @@ from cucor_bot.parser.HTMLParser import HTMLParser
 
 
 class KharkovObmenkaHTMLParser(HTMLParser):
+    """
+    HTML parser for kharkov.obmenka.ua
+    Calculates rates according to returned site's data
+    """
+
     def __init__(self):
         self.url = "https://kharkov.obmenka.ua/"
         self.yaml = """

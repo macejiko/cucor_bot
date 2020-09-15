@@ -9,6 +9,7 @@ class TestKharkovObmenkaHTMLParser:
     def test_get_data(self):
         parser = KharkovObmenkaHTMLParser()
         parser.get_data()
+
         assert isinstance(parser.data, dict)
         assert len(parser.data["rate"]) != 0
         assert len(parser.data["rate"][0]["currency"]) != 0
@@ -19,6 +20,7 @@ class TestKharkovObmenkaHTMLParser:
         parser = KharkovObmenkaHTMLParser()
         parser.get_data()
         parser.get_rates()
+
         assert isinstance(parser.rates, list)
         assert len(parser.rates) != 0
         assert re.search("[a-z]{3}-[a-z]{3}", parser.rates[0]["currency"])
