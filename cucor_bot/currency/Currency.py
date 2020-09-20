@@ -4,7 +4,21 @@ import re
 
 
 class Currency:
-    def __init__(self, string):
+    """
+    This class presents any coin in the system
+    """
+
+    def __init__(self, amount=0, name="uah"):
+        """
+        Valid amount int only
+        Valid name with 3 chars. E.g. 'usd', 'uah', 'rub'
+        """
+        if len(name) != 3 or not isinstance(amount, int):
+            raise AttributeError("Incorrect amount or name provided!")
+        self.amount = amount
+        self.name = name
+
+    def get_from_string(self, string):
         """
         Available string values:
 
