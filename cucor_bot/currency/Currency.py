@@ -10,17 +10,21 @@ class Currency:
 
     def __init__(self, amount=0, name="uah"):
         """
-        Valid amount int only
+        Valid amount int or float
         Valid name with 3 chars. E.g. 'usd', 'uah', 'rub'
         """
-        if len(name) != 3 or not isinstance(amount, int):
+        if (
+            len(name) != 3
+            or not isinstance(amount, float)
+            and not isinstance(amount, int)
+        ):
             raise AttributeError("Incorrect amount or name provided!")
         self.amount = amount
         self.name = name
 
     def get_from_string(self, string):
         """
-        Available string values:
+        Available string values. Amount should be int:
 
             Currency('7uah')
             Currency('5 usd')

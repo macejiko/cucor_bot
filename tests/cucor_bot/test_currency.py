@@ -6,7 +6,7 @@ from cucor_bot.currency.Currency import Currency
 
 class TestCurrency:
     @pytest.mark.parametrize(
-        "input_amount,input_name,result_amount,result_name",
+        "input_amount, input_name, result_amount, result_name",
         [(100, "rub", 100, "rub"), (9.99, "eur", 9.99, "eur")],
     )
     def test_constructor_valid(
@@ -18,9 +18,10 @@ class TestCurrency:
         assert c.name == result_name
 
     @pytest.mark.parametrize(
-        "input_amount,input_name",
+        "input_amount, input_name",
         [
             ("3", "eur"),
+            ("5.55", "usd"),
             ("aaa", "uah"),
             (10, "us"),
             (5, "@#$"),
@@ -38,7 +39,13 @@ class TestCurrency:
             assert Currency(input_amount, input_name)
 
     @pytest.mark.parametrize(
-        "valid,name,amount", [("15usd", "usd", 15), ("7 uah", "uah", 7)]
+        "valid, name, amount",
+        [
+            ("15usd", "usd", 15),
+            ("7 uah", "uah", 7),
+            ("888.88 rub", "rub", 888.88),
+            ("77.7eur", "eur", 77.7),
+        ],
     )
     def test_valid_string(self, valid, name, amount):
         c = Currency()
@@ -52,14 +59,22 @@ class TestCurrency:
         [
             "usd",
             "8lol",
+            "3.33hah",
+            "3ua",
+            "8.9ru",
             "uah7",
+            "eur3.14",
+            "eur 10",
+            "rub 2.66",
+            "ru 2.66",
+            "eu 2",
+            "us55",
+            "gb5.5",
             "AAA",
             "777",
             "None",
-            "eur 10",
             "!#?$",
             "5$",
-            "3ua",
             "http://pythong.org",
             True,
         ],
