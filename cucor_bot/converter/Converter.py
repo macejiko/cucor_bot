@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from cucor_bot.currency.Currency import Currency
+from cucor_bot.parser.Parser import Parser
 
 
 class Converter:
@@ -14,8 +15,14 @@ class Converter:
     """
 
     def __init__(self, currency, parser, target_currency):
-        self.currency = currency
-        self.parser = parser
+        if isinstance(currency, Currency):
+            self.currency = currency
+        else:
+            raise AttributeError("Incorrect Currency provided!")
+        if isinstance(parser, Parser):
+            self.parser = parser
+        else:
+            raise AttributeError("Incorrect Parser provided!")
         self.target_currency = target_currency
 
     def __iter__(self):
